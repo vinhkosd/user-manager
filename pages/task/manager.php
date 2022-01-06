@@ -69,8 +69,8 @@ checkPermission("user", true);
 						<input type="text"  id="mo_ta" name="mo_ta" class="form-control" required/>
 					</div>
 					<div class="form-group">
-						<label for="so_phong" class="col-form-label">Số phòng:</label>
-						<input type="text" class="form-control" id="so_phong" name="so_phong" data-inputmask-regex="[0-9]{1,40}" required/>
+						<label for="time" class="col-form-label">Số phòng:</label>
+						<input type="text" class="form-control" id="time" name="time" data-inputmask-regex="[0-9]{1,40}" required/>
 					</div>
 					</form>
 				</div>
@@ -97,7 +97,7 @@ checkPermission("user", true);
 						<input type="text" class="form-control" id="id" name="id" readonly>
 					</div>
 					<div class="form-group">
-						<label for="ten" class="col-form-label">Tên phòng ban:</label>
+						<label for="ten" class="col-form-label">Tên:</label>
 						<input type="text" id="ten" name="ten" class="form-control" required/>
 					</div>
 					<div class="form-group">
@@ -105,12 +105,12 @@ checkPermission("user", true);
 						<input type="text"  id="mo_ta" name="mo_ta" class="form-control" required/>
 					</div>
 					<div class="form-group">
-						<label for="so_phong" class="col-form-label">Số phòng:</label>
-						<input type="text" class="form-control" id="so_phong" name="so_phong" data-inputmask-regex="[0-9]{1,40}" required/>
+						<label for="time" class="col-form-label">Deadline:</label>
+						<input type="text" class="form-control" id="time" name="time" data-inputmask="'alias': 'datetime', 'inputFormat': 'HH:MM dd/mm/yyyy'" required/>
 					</div>
 					<div class="form-group">
-						<label for="manager_id" class="col-form-label">Quản lý:</label>
-						<select class="form-control" name="manager_id" required>
+						<label for="assign_id" class="col-form-label">Người được giao:</label>
+						<select class="form-control" name="assign_id" required>
 							<option value="0">Không chọn</option>
 						</select>
 					</div>
@@ -216,7 +216,7 @@ checkPermission("user", true);
 		});
 
 		$('#editPhongBanSaveButton').click(function () {
-			$.post("<?php homePath()?>ajax/editphongban.php",$('#editPhongBanForm').serialize(), (data) => {
+			$.post("<?php homePath()?>ajax/edittask.php",$('#editPhongBanForm').serialize(), (data) => {
 				if(data.success) {
 					Lobibox.notify("success", {
 						msg: data.success
@@ -274,11 +274,11 @@ checkPermission("user", true);
 		});
 
 		function getUserList() {
-			$.get("<?php homePath()?>ajax/userlist.php", {}, (data) => {
+			$.get("<?php homePath()?>ajax/userlist.php", {role: "user"}, (data) => {
 				// console.log(data)
-				// $('select[name="manager_id"]');
+				// $('select[name="assign_id"]');
 				$.each(data, function(key, value) {
-					$('select[name="manager_id"]')
+					$('select[name="assign_id"]')
 						.append($("<option></option>")
 									.attr("value", value.id)
 									.text(value.name));
