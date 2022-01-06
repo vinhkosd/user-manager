@@ -27,7 +27,7 @@
             </a>
             <div class="collapse" id="account">
               <ul class="nav sub-menu">
-                <?php if (checkPermission("god")) 
+                <?php if (checkPermission("god"))
                   {
                 ?>
                   <li class="nav-item">
@@ -40,7 +40,17 @@
                   }
                 ?>
 
-                <?php if (checkPermission("user")) 
+                <?php if (checkPermission("user"))
+                  {
+                ?>
+                  <li class="nav-item">
+                    <a href="<?php homePath();?>pages/task/manager" class="nav-link">Quản lý Task</a>
+                  </li>
+                <?php
+                  }
+                ?>
+
+                <?php if (checkPermission("user"))
                   {
                 ?>
                   <li class="nav-item">
