@@ -34,7 +34,8 @@ checkPermission("user", true);
 									<th>ID</th>
 									<th>Tên</th>
 									<th>Mô tả</th>
-									<th>Số phòng</th>
+									<th>Người giao</th>
+                  <th>Người được giao</th>
 									<th>Chức năng</th>
 								</tr>
 								</thead>
@@ -161,13 +162,14 @@ checkPermission("user", true);
 				},
 				"processing": true,
 		        "serverSide": true,
-		        "ajax": "<?php homePath()?>ajax/listphongban.php",
+		        "ajax": "<?php homePath()?>ajax/listtask.php",
 		        "order": [[ 0, "desc" ]],
 		        "columns": [
 		            { "data": "id" },
 		            { "data": "ten" },
 		            { "data": "mo_ta" },
-					{ "data": "so_phong" },
+                { "data": "owner" },
+                { "data": "assign" },
 		            {
 		                "class":          "function-button",
 		                "orderable":      false,
