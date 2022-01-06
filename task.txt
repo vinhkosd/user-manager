@@ -1,0 +1,31 @@
+admin cp có mấy cái cơ bản mà game nào cũng nên làm
+1. Log data
+- Tìm role name theo id đăng ký / theo server
+- Tìm acc info theo role name / theo server
+> lấy ra thông tin:
+
+*ID
+*Ngày đăng ký
+*Level hiện tại
+*Class
+*Vật phẩm đang sở hữu
+v.v.v.
+
+2. thống kê data
+- CCU: theo giờ của ngày hiện tại / của ngày chỉ định
+- CCU: theo ngày của ngày chỉ định từ ngày đến ngày
+- Active / Paying user current date: tổng unique login của ngày hiện tại
+- Active / Paying user daily: tổng unique login của ngày chỉ định từ ngày đến ngày
+
+- Active / Paying user current month: tổng unique login của tháng hiện tại tính từ ngày 1 đến ngày cuối tháng 30/31
+- Active / Paying user monthly: tổng unique login của tháng chỉ định từ tháng đến tháng
+
+- Tổng tiền nạp current date: tổng nạp của ngày hiện tại
+- Tổng tiền nạp daily: tổng nạp của ngày chỉ định từ ngày đến ngày
+- Tổng tiền nạp monthly: tổng nạp của tháng chỉ định từ tháng đến tháng
+
+Table log_login
+
+id : bigint
+accid: bigint
+logindate: date -> 1 ngày 1 record, lấy lần đăng nhập gần nhất trong ngày
