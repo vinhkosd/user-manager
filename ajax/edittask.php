@@ -7,68 +7,44 @@ validateLogin(true, false);//check account login
 // requirePerm("god");
 
 if(isset($_POST)){
-    $input = collect($_POST)->only(['id', 'ten', 'mo_ta', 'so_phong', 'assign_id'])->toArray();
-    $input['assign_id'] = intval($input['assign_id']);
+    if(checkPermission("admin")) {
+        $input = collect($_POST)->only(['id', 'ten', 'mo_ta', 'so_phong', 'assign_id', 'time'])->toArray();
+        $input['assign_id'] = intval($input['assign_id']);
 
-    if(!is_numeric($input['assign_id'])) {
-        echo(json_encode(['error' => 'Dữ liệu không hợp lệ!']));
+        if(!is_numeric($input['assign_id'])) {
+            echo(json_encode(['error' => 'Dữ liệu không hợp lệ!']));
+        }
     }
+    else {
+        $input = collect($_POST)->only(['id', 'mo_ta'])->toArray();
+    }
+    
+    
 
-    $phongbanInfo = Tasks::where('id', $input['id'])->first();
+    $taskInfo = Tasks::where('id', $input['id'])->first();
 
-    // if($input['assign_id'] > 0) {//setup trưởng phòng
-    //     $accountInfo = Users::where('id', $input['assign_id'])->first();
+    
 
-    //     if($accountInfo['role'] != "user") {
-    //         echo(json_encode(['error' => 'Chỉ có thể giao việc cho nhân viên!']));
-    //         die();
-    //     }
+    $_SESSION['tmpfiles'] = !empty($_SESSION['tmpfiles']) ? $_SESSION['tmpfiles'] : [];
+    $_SESSION['accepttmpfiles'] = true;
 
-    //     $phongBanOfManager = Tasks::where('assign_id', $input['assign_id'])->first();
-
-    //     if(!empty($phongBanOfManager)){//nhân viên này đã quản lý 1 phòng ban khác -> xoá user khỏi phòng ban cũ
-    //         $updateTasks = [
-    //             'assign_id' => 0
-    //         ];
-
-    //         $updateUser = [
-    //             'phongban_id' => $input['id']
-    //         ];
-
-    //         Tasks::where('assign_id', $input['assign_id'])->update($updateTasks);
-    //         Users::where('id', $input['assign_id'])->update($updateUser);
-    //     }
-    // }
-
-    // if($phongbanInfo['assign_id'] > 0 && $input['assign_id'] != $phongbanInfo['assign_id']) {//nhân viên bị tước chức trưởng phòng
-    //     $accountInfo = Users::where('id', $input['assign_id'])->first();
-
-    //     // $updateTasks = [
-    //     //     'assign_id' => $input['assign_id']
-    //     // ];
-
-    //     $updateUserOld = [
-    //         'phongban_id' => 0,
-    //         'role' => 'user'
-    //     ];
-
-    //     // Tasks::where('id', $input['id'])->update($updateTasks);
-    //     Users::where('id', $phongbanInfo['assign_id'])->update($updateUserOld);
-    //     if ($input['assign_id'] > 0) {
-    //         $updateUserNew = [
-    //             'phongban_id' => $input['id'],
-    //             'role' => 'admin'
-    //         ];
-
-    //         Users::where('id', $input['assign_id'])->update($updateUserNew);
-    //     }
-    // }
-
-    if(empty($phongbanInfo)){
-        echo(json_encode(['error' => 'Phòng ban không tồn tại vui lòng thử lại!']));
+    if(empty($taskInfo)){
+        echo(json_encode(['error' => 'Task không tồn tại vui lòng thử lại!']));
     } else {
+
+        if(!checkPermission("admin")) {//user
+            if($taskInfo['status'] <= 0 || $taskInfo['status'] == 2) {//phải nhận task và task chưa bị huỷ
+                echo(json_encode(['error' => 'Dữ liệu không hợp lệ!']));
+                die();
+            }
+            
+            $input['status'] = 3;
+        }
+        $taskInfo['attachment'] = !empty($taskInfo['attachment']) ? json_decode($taskInfo['attachment']) : [];
+        $input['attachment'] = array_merge((array)$taskInfo['attachment'], (array)$_SESSION['tmpfiles']);
+        $input['attachment'] = json_encode($input['attachment']);
         Tasks::where('id', $input['id'])->update($input);
-        echo(json_encode(['success' => 'Sửa phòng ban '.$phongbanInfo['ten'].' thành công']));
+        echo(json_encode(['success' => 'Sửa task '.$taskInfo['ten'].' thành công']));
     }
 }
 ?>

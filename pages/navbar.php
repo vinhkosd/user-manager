@@ -13,7 +13,7 @@
         <ul class="nav">
           <li class="nav-item nav-category">Trang Chủ</li>
           <li class="nav-item">
-            <a href="<?php homePath();?>home" class="nav-link">
+            <a href="<?php homePath();?>?page=home" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
               <span class="link-title">Trang Chủ</span>
             </a>
@@ -31,20 +31,10 @@
                   {
                 ?>
                   <li class="nav-item">
-                    <a href="<?php homePath();?>pages/account/accountlist" class="nav-link">Quản lý tài khoản</a>
+                    <a href="<?php homePath();?>?page=pages/account/accountlist" class="nav-link">Quản lý tài khoản</a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php homePath();?>pages/account/phongban" class="nav-link">Quản lý phòng ban</a>
-                  </li>
-                <?php
-                  }
-                ?>
-
-                <?php if (checkPermission("user"))
-                  {
-                ?>
-                  <li class="nav-item">
-                    <a href="<?php homePath();?>pages/task/manager" class="nav-link">Quản lý Task</a>
+                    <a href="<?php homePath();?>?page=pages/account/phongban" class="nav-link">Quản lý phòng ban</a>
                   </li>
                 <?php
                   }
@@ -54,7 +44,17 @@
                   {
                 ?>
                   <li class="nav-item">
-                    <a href="<?php homePath();?>pages/account/editprofile" class="nav-link">Sửa thông tin tài khoản</a>
+                    <a href="<?php homePath();?>?page=pages/task/manager" class="nav-link">Quản lý Task</a>
+                  </li>
+                <?php
+                  }
+                ?>
+
+                <?php if (checkPermission("user"))
+                  {
+                ?>
+                  <li class="nav-item">
+                    <a href="<?php homePath();?>?page=pages/account/editprofile" class="nav-link">Sửa thông tin tài khoản</a>
                   </li>
                 <?php
                   }
@@ -62,23 +62,6 @@
               </ul>
             </div>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
-              <i class="link-icon" data-feather="anchor"></i>
-              <span class="link-title">In-Game</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="advancedUI">
-              <ul class="nav sub-menu">
-                <li class="nav-item">
-                  <a href="<?php homePath();?>pages/auction/auctionlist" class="nav-link">Đấu giá</a>
-                </li>
-                <li class="nav-item">
-                  <a href="<?php homePath();?>pages/package/packagelist" class="nav-link">Danh sách Gói</a>
-                </li>
-              </ul>
-            </div>
-          </li> -->
         </ul>
       </div>
     </nav>

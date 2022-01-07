@@ -4,16 +4,6 @@
 					<i data-feather="menu"></i>
 				</a>
 				<div class="navbar-content">
-					<form class="search-form">
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<div class="input-group-text">
-									<i data-feather="search"></i>
-								</div>
-							</div>
-							<input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
-						</div>
-					</form>
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown nav-profile">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +22,7 @@
 								<div class="dropdown-body">
 									<ul class="profile-nav p-0 pt-3">
 										<li class="nav-item">
-											<a href="pages/general/profile" class="nav-link">
+											<a href="?page=pages/account/editprofile" class="nav-link">
 												<i data-feather="user"></i>
 												<span>Profile</span>
 											</a>
@@ -44,13 +34,13 @@
 											</a>
 										</li>
 										<li class="nav-item">
-											<a href="<?php homePath();?>pages/auth/logout" class="nav-link">
+											<a href="<?php homePath();?>?page=pages/auth/logout" class="nav-link">
 												<i data-feather="repeat"></i>
 												<span>Switch User</span>
 											</a>
 										</li>
 										<li class="nav-item">
-											<a href="<?php homePath();?>pages/auth/logout" class="nav-link">
+											<a href="<?php homePath();?>?page=pages/auth/logout" class="nav-link">
 												<i data-feather="log-out"></i>
 												<span>Log Out</span>
 											</a>

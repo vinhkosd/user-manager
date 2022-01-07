@@ -40,7 +40,7 @@ function renderBody() {
   if(isset($_SESSION['username'])) {
     include(__DIR__."/../pages/accountsidebar.php");
   }
-  $path = $_SERVER['REQUEST_URI'];//remove / slash
+  $path = !empty($_GET['page']) ? $_GET['page'] : '';//remove / slash
   $path = parse_url($path, PHP_URL_PATH);//only get url path
   if($path && file_exists(__DIR__."/../".realFilePath().$path.".php")){
     if(isset($_SESSION['isFirst']) && $_SESSION['isFirst']) {
@@ -66,7 +66,7 @@ function renderBody() {
 
 function redirectRoute($url) {
   die('<script type="text/javascript">
-  window.location = "'.homePath(true).$url.'";
+  window.location = "'.homePath(true)."?page=".$url.'";
   </script>');
 }
 

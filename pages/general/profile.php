@@ -38,10 +38,10 @@
 								</div>
 								<div class="dropdown-body">
 									<div class="d-flex align-items-center apps">
-										<a href="<?php homePath();?>pages/apps/chat.html"><i data-feather="message-square" class="icon-lg"></i><p>Chat</p></a>
-										<a href="<?php homePath();?>pages/apps/calendar.html"><i data-feather="calendar" class="icon-lg"></i><p>Calendar</p></a>
-										<a href="<?php homePath();?>pages/email/inbox.html"><i data-feather="mail" class="icon-lg"></i><p>Email</p></a>
-										<a href="<?php homePath();?>pages/general/profile.html"><i data-feather="instagram" class="icon-lg"></i><p>Profile</p></a>
+										<a href="#"><i data-feather="message-square" class="icon-lg"></i><p>Chat</p></a>
+										<a href="#"><i data-feather="calendar" class="icon-lg"></i><p>Calendar</p></a>
+										<a href="#"><i data-feather="mail" class="icon-lg"></i><p>Email</p></a>
+										<a href="<?php homePath();?>?page=pages/account/editprofile"><i data-feather="instagram" class="icon-lg"></i><p>Profile</p></a>
 									</div>
 								</div>
 								<div class="dropdown-footer d-flex align-items-center justify-content-center">
@@ -206,7 +206,7 @@
 								<div class="dropdown-body">
 									<ul class="profile-nav p-0 pt-3">
 										<li class="nav-item">
-											<a href="<?php homePath();?>pages/general/profile.html" class="nav-link">
+											<a href="<?php homePath();?>?page=pages/account/editprofile" class="nav-link">
 												<i data-feather="user"></i>
 												<span>Profile</span>
 											</a>

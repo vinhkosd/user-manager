@@ -33,6 +33,11 @@ if(!empty($orderBy) && !empty($orderBy['data']) && $orderBy['orderable']) {
     $accountList->orderBy($orderBy['data'], $typeOrder);
 }
 
+if(!checkPermission("admin")) {//user
+    $accountList->where("assign_id", $_SESSION['accountId']);
+    $accountList->where("status", "<>", 2);
+}
+
 // $accountList->distinct('manager_id');
 
 $columns = [

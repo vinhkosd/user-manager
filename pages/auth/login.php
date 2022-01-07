@@ -1,5 +1,11 @@
 <?php
+use Models\Users;
 validateLogin(true, true);
+$countUsers = Users::count();
+
+if($countUsers <= 0) {
+  redirectRoute('pages/auth/firstlogin');
+}
 ?>
 
 <div class="page-content d-flex align-items-center justify-content-center">
@@ -35,7 +41,6 @@ validateLogin(true, true);
                     Login
                   </button>
                 </div>
-                <!--a href="<?php homePath()?>pages/auth/register" class="d-block mt-3 text-muted">Not a user? Sign up</a-->
               </form>
             </div>
           </div>
