@@ -13,7 +13,7 @@
             <div class="auth-form-wrapper px-4 py-5">
               <a href="#" class="ui-logo logo-light d-block mb-2">HỆ THỐNG QUẢN LÝ NHÂN SỰ</a>
               <h5 class="text-muted font-weight-normal mb-4">Sửa thông tin tài khoản.</h5>
-              <form id="loginForm" class="needs-validation" method="post">
+              <form id="editProfileForm" class="needs-validation" method="post">
                 <div class="form-group has-feedback">
                   <label for="username">Tài khoản</label>
                   <input value="<?php echo $_SESSION['username'];?>" type="text" class="form-control" id="username" name="username" autocomplete="current-username" placeholder="Tài khoản" readonly/>
@@ -66,14 +66,14 @@
 </div>
 <script type="text/javascript">
 $().ready(function() {
-  $('#loginForm').validator().on('submit', function (e) {
+  $('#editProfileForm').validator().on('submit', function (e) {
     if (e.isDefaultPrevented()) {
       // handle the invalid form...
       return false;
     }
     
     var formData = new FormData();
-    var currentForm = $( "#loginForm" ).serializeArray()
+    var currentForm = $( "#editProfileForm" ).serializeArray()
     console.log(currentForm)
     console.log(Object.values(currentForm))
     currentForm.map(item => {

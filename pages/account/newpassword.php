@@ -16,7 +16,7 @@ if(!isset($_SESSION['isFirst']) || !$_SESSION['isFirst']) {
             <div class="auth-form-wrapper px-4 py-5">
               <a href="#" class="ui-logo logo-light d-block mb-2">HỆ THỐNG QUẢN LÝ NHÂN SỰ</a>
               <h5 class="text-muted font-weight-normal mb-4">Bạn cần phải nhập mật khẩu mới để tiếp tục.</h5>
-              <form id="loginForm" class="needs-validation" method="post">
+              <form id="newPasswordForm" class="needs-validation" method="post">
                 <div class="form-group has-feedback">
                   <label for="password">Mật khẩu mới</label>
                   <input type="password" pattern="^[_A-z0-9]{1,}$" maxlength="60" class="form-control" id="password" name="password" autocomplete="current-password" placeholder="Password" required/>
@@ -45,13 +45,13 @@ if(!isset($_SESSION['isFirst']) || !$_SESSION['isFirst']) {
 </div>
 <script type="text/javascript">
 $().ready(function() {
-  $('#loginForm').validator().on('submit', function (e) {
+  $('#newPasswordForm').validator().on('submit', function (e) {
     if (e.isDefaultPrevented()) {
       // handle the invalid form...
       return false;
     }
-    // var data = $('#loginForm').serialize();
-    $.post("<?php homePath()?>ajax/newpassword.php", $( "#loginForm" ).serialize(), (data) => {
+    // var data = $('#newPasswordForm').serialize();
+    $.post("<?php homePath()?>ajax/newpassword.php", $( "#newPasswordForm" ).serialize(), (data) => {
       if(data[0] == 'success') {
         window.location = "<?php homePath()?>";
       } else {
